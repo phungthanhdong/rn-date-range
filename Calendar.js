@@ -1,13 +1,13 @@
 'use strict';
 
-import React, {
-	PropTypes
-} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-	ListView,
+	// ListView,
 	StyleSheet,
 	Dimensions
 } from 'react-native';
+import ListView from 'deprecated-react-native-listview';
 
 const { width } = Dimensions.get('window');
 
@@ -21,9 +21,9 @@ export default class Calendar extends React.Component {
 		onSelectionChange: () => {
 		},
 
-		monthsLocale: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-			'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
-		weekDaysLocale: ['P', 'P', 'S', 'Ç', 'P', 'C', 'C'],
+		monthsLocale: ['January', 'February', 'March', 'April', 'May', 'June',
+			'July', 'August', 'September', 'October', 'November', 'December'],
+		weekDaysLocale: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
 		width: width,
 
