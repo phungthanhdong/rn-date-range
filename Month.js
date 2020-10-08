@@ -19,7 +19,7 @@ export default class Month extends React.Component {
 		}
 	}
 
-	renderWeekDays(){
+	renderWeekDays = () => {
 		let {
 			width, bodyTextColor
 		} = this.props;
@@ -40,7 +40,7 @@ export default class Month extends React.Component {
 		)
 	}
 
-	renderDays(){
+	renderDays = () => {
 		let {
 			days, changeSelection
 		} = this.props;

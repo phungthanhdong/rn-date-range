@@ -70,6 +70,8 @@ All properties are optional
 
 - **`rangeSelect`** _(bool)_ — True if you want to select a range of dates. By default is true.
 
+- **`lockRotation`** _(bool)_ — True if you do not want to handle rotation. By default is false.
+
 
 ### Colors
  
@@ -96,6 +98,12 @@ All properties are optional
 - **`dayInRangeTextColor`** _(string)_ — In range day text color.
 
 - **`monthTextColor`** _(string)_ — Calendar month header text color.
+
+## Additional features:
+
+* Handle rotation (dimensional change event).
+
+* Can select range backward.
 
 ## Support
 

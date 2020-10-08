@@ -47,7 +47,8 @@ export default class Calendar extends React.Component {
 
 		isFutureDate: true,
 		rangeSelect: true,
-		startFromMonday: true
+		startFromMonday: true,
+		lockRotation: false,
 	};
 
 	static propTypes = {
@@ -102,7 +103,8 @@ export default class Calendar extends React.Component {
 		var dataSource = new ListView.DataSource({rowHasChanged: this.rowHasChanged});
 
 		this.state = {
-			dataSource: dataSource.cloneWithRows(this.months)
+			dataSource: dataSource.cloneWithRows(this.months),
+			contextWidth: width,
 		}
 	}
 
@@ -114,7 +116,23 @@ export default class Calendar extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps){
+	componentDidMount() {
+		Dimensions.addEventListener('change', this.onDimensionChange );
+		this.setState({contextWidth: Dimensions.get('window').width});
+	}
+
+	componentWillUnmount() {
+		Dimensions.removeEventListener('change', this.onDimensionChange );
+	}
+
+	onDimensionChange = (event) => {
+		const {width} = event.window;
+		if (!this.props.lockRotation) {
+			this.setState({contextWidth: width})
+		}
+	}
+
+	UNSAFE_componentWillReceiveProps(nextProps){
 		if(nextProps.selectFrom && nextProps.selectTo){
 			this.selectFrom = nextProps.selectedFrom;
 			this.selectTo = nextProps.selectTo;
@@ -191,10 +209,14 @@ export default class Calendar extends React.Component {
 
 		if (!selectFrom) {
 			selectFrom = value;
-		} else if (!selectTo) {
+		}
+		else if (!selectTo || (selectFrom == selectTo)) {
+
 			if (value > selectFrom) {
 				selectTo = value;
 			} else {
+				//selectFrom = value;
+				selectTo = selectFrom;
 				selectFrom = value;
 			}
 		} else if (selectFrom && selectTo) {
@@ -260,6 +282,7 @@ export default class Calendar extends React.Component {
 
 		return (
 			<ListView
+				key={this.state.contextWidth}
 				showsVerticalScrollIndicator={false}
 				initialListSize={5}
 				scrollRenderAheadDistance={1200}
@@ -269,6 +292,7 @@ export default class Calendar extends React.Component {
 					return (
 						<Month
 							{...this.props}
+							width={this.state.contextWidth}
 							days={month}
 							style={[styles.month, directionStyles]}
 							changeSelection={this.changeSelection}
