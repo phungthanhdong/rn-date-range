@@ -47,7 +47,7 @@ export default class Day extends React.Component {
 				break;
 
 			case 'selectedFrom':
-				backColor = this.props.daySelectedBackColor;
+				backColor = this.props.dayCommonBackColor; // this.props.daySelectedBackColor;
 				textColor = this.props.daySelectedTextColor;
 				selectedFromStyle = {
 					alignItems:'flex-end',
@@ -70,7 +70,7 @@ export default class Day extends React.Component {
 				break;
 
 			case 'selectedTo':
-				backColor = this.props.daySelectedBackColor;
+				backColor = this.props.dayCommonBackColor; // this.props.daySelectedBackColor;
 				textColor = this.props.daySelectedTextColor;
 				selectedToStyle = {
 					alignItems:'flex-start',

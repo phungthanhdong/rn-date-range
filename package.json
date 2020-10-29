@@ -19,8 +19,8 @@
     "url": "https://github.com/melihmucuk/rn-date-range.git"
   },
   "dependencies": {
-	"deprecated-react-native-listview": "^0.0.6",
-	"prop-types": "^15.7.2"
+    "deprecated-react-native-listview": "^0.0.6",
+    "prop-types": "^15.7.2"
   },
   "author": "Melih Mucuk",
   "license": "MIT"
